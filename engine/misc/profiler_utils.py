@@ -3,15 +3,19 @@ Copyright (c) 2024 The D-FINE Authors. All Rights Reserved.
 """
 
 import copy
-from calflops import calculate_flops
 from typing import Tuple
 
 def stats(
     cfg,
     input_shape: Tuple=(1, 3, 640, 640), ) -> Tuple[int, dict]:
 
-    base_size = cfg.train_dataloader.collate_fn.base_size
+    try:
+        base_size = cfg.train_dataloader.collate_fn.base_size
+    except AttributeError:
+        base_size = 640
     input_shape = (1, 3, base_size, base_size)
+
+    from calflops import calculate_flops
 
     model_for_info = copy.deepcopy(cfg.model).deploy()
 
