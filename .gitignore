@@ -3,6 +3,7 @@ outputs/
 ckpts/
 testenv/
 backup
+.history
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -142,3 +143,8 @@ dmypy.json
 *.zip
 *.html
 .DS_Store
+
+# Local training artifacts
+ckpt/
+smoke/
+torch_results.jpg
